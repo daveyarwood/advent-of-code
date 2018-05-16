@@ -13,4 +13,3 @@
   (with-open [rdr (io/reader (io/resource "2015-12-05-01-input"))]
     (->> rdr line-seq (filter nice?) count prn)))
 
-
