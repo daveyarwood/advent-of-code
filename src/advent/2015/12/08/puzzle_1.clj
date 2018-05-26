@@ -5,7 +5,7 @@
 
 (defn count-extra-chars
   [s]
-  (let [total-chars  (count s)
+  (let [code-chars   (count s)
         string-chars (-> s
                          (str/replace #"\\x([0-9a-f]{2})"
                                       (fn [[_ match]] (util/hex->utf8 match)))
@@ -14,7 +14,7 @@
                          count
                          ;; don't count the initial and final "
                          (- 2))]
-    (- total-chars string-chars)))
+    (- code-chars string-chars)))
 
 (defn -main
   []
