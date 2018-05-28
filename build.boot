@@ -1,8 +1,9 @@
 (set-env!
   :source-paths   #{"src"}
   :resource-paths #{"resources"}
-  :dependencies   '[[org.clojure/clojure "1.9.0"]
-                    [digest              "1.4.8"]])
+  :dependencies   '[[org.clojure/clojure            "1.9.0"]
+                    [org.clojure/math.combinatorics "0.1.4"]
+                    [digest                         "1.4.8"]])
 
 (deftask run
   "Runs the main function in a particular puzzle namespace."
