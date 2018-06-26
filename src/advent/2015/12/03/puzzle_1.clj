@@ -1,8 +1,8 @@
 (ns advent.2015.12.03.puzzle-1
-  (:require [clojure.java.io         :as io]
-            [clojure.spec.alpha      :as s]
-            [clojure.spec.test.alpha :as stest]
-            [advent.util             :as util]))
+  (:require [clojure.java.io         :as    io]
+            [clojure.spec.alpha      :as    s]
+            [clojure.spec.test.alpha :as    stest]
+            [advent.util.io          :refer (char-seq)]))
 
 (s/def ::state (s/tuple ::coordinate ::present-counts))
 
@@ -41,5 +41,5 @@
 (defn -main
   []
   (with-open [rdr (io/reader (io/resource "2015-12-03-01-input"))]
-    (-> rdr util/char-seq follow-instructions second count prn)))
+    (-> rdr char-seq follow-instructions second count prn)))
 

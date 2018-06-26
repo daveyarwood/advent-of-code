@@ -1,14 +1,14 @@
 (ns advent.2015.12.08.puzzle-1
-  (:require [advent.util     :as util]
-            [clojure.string  :as str]
-            [clojure.java.io :as io]))
+  (:require [advent.util.codec :refer (hex->utf8)]
+            [clojure.string    :as    str]
+            [clojure.java.io   :as    io]))
 
 (defn count-extra-chars
   [s]
   (let [code-chars   (count s)
         string-chars (-> s
                          (str/replace #"\\x([0-9a-f]{2})"
-                                      (fn [[_ match]] (util/hex->utf8 match)))
+                                      (fn [[_ match]] (hex->utf8 match)))
                          (str/replace #"\\\"" "\"")
                          (str/replace #"\\\\" (str/re-quote-replacement "\\"))
                          count
