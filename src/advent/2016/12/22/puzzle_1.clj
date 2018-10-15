@@ -32,8 +32,6 @@
 (defn viable?
   [[node-a node-b]]
   (and (pos? (:used node-a))
-       ;; This should always be true, but just in case...
-       (not= (:position node-a) (:position node-b))
        (<= (:used node-a) (:available node-b))))
 
 (defn -main
