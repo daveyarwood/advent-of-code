@@ -38,3 +38,8 @@
                     (remove visited)
                     (mapcat #(neighbors grid-map % wall-pred))))))))
 
+(defn manhattan-distance
+  [[a b] [c d]]
+  (+ (Math/abs (- c a))
+     (Math/abs (- d b))))
+
