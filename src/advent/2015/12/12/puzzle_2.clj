@@ -21,6 +21,7 @@
   Number
   (numeric-value-v2 [this] this))
 
-(defn -main []
+(defn -main
+  []
   (with-open [rdr (io/reader (io/resource "2015-12-12-01-input.json"))]
     (->> rdr json/read numeric-value-v2 prn)))
