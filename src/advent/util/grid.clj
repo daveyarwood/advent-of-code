@@ -1,19 +1,26 @@
 (ns advent.util.grid
   (:require [clojure.set :as set]))
 
-;; I threw this together while attempting to solve 2016, Day 24, based on my
-;; solution to 2016, Day 13 which was a similar path-finding exercise.
-;;
-;; I ended up punting on 2016, Day 24, so to be honest, I'm not sure if this
-;; really works.
+(defn neighbors*
+  [neighbors-fn]
+  (fn [grid-map coord & [wall-pred]]
+    (let [wall-pred (or wall-pred (constantly false))]
+      (->> (neighbors-fn coord)
+           (filter (fn [neighbor-coord]
+                     (let [value (get grid-map neighbor-coord ::off-grid)]
+                       (and (not= ::off-grid value)
+                            (not (wall-pred value))))))))))
 
-(defn neighbors
-  [grid-map [x y] wall-pred]
-  (->> [[(inc x) y] [(dec x) y] [x (inc y)] [x (dec y)]]
-       (filter (fn [coord]
-                 (let [value (get grid-map coord ::off-grid)]
-                   (and (not= ::off-grid value)
-                        (not (wall-pred value))))))))
+(def neighbors-without-diagonal
+  (neighbors* (fn [[x y]]
+                [[(inc x) y] [(dec x) y]
+                 [x (inc y)] [x (dec y)]])))
+
+(def neighbors-with-diagonal
+  (neighbors* (fn [[x y]]
+                [[(dec x) (inc y)] [x (inc y)] [(inc x) (inc y)]
+                 [(dec x) y]                   [(inc x) y]
+                 [(dec x) (dec y)] [x (dec y)] [(inc x) (dec y)]])))
 
 (defn- coord?
   [x]
@@ -22,6 +29,11 @@
        (number? (first x))
        (number? (second x))))
 
+;; I threw this together while attempting to solve 2016, Day 24, based on my
+;; solution to 2016, Day 13 which was a similar path-finding exercise.
+;;
+;; I ended up punting on 2016, Day 24, so to be honest, I'm not sure if this
+;; really works.
 (defn minimum-steps
   [grid-map pair wall-pred]
   {:pre [(map? grid-map)
@@ -36,7 +48,10 @@
                (set/union visited (set realities))
                (->> realities
                     (remove visited)
-                    (mapcat #(neighbors grid-map % wall-pred))))))))
+                    (mapcat #(neighbors-without-diagonal
+                               grid-map
+                               %
+                               wall-pred))))))))
 
 (defn manhattan-distance
   [[a b] [c d]]
