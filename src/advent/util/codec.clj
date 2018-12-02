@@ -18,8 +18,8 @@
    68 -> h, 65 -> e, 6c -> l, 6c -> l, 6f -> o"
   [s]
   (let [bytes (into-array Byte/TYPE
-                 (map (fn [[x y]]
-                        (unchecked-byte (Integer/parseInt (str x y) 16)))
-                      (partition 2 s)))]
+                (map (fn [[x y]]
+                       (unchecked-byte (Integer/parseInt (str x y) 16)))
+                     (partition 2 s)))]
     (String. bytes "UTF-8")))
 
