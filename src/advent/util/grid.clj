@@ -1,7 +1,7 @@
 (ns advent.util.grid
   (:require [clojure.set :as set]))
 
-(defn neighbors*
+(defn- neighbors*
   [neighbors-fn]
   (fn [grid-map coord & [wall-pred]]
     (let [wall-pred (or wall-pred (constantly false))]
