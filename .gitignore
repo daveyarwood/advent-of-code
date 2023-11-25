@@ -1,2 +1,4 @@
 .nrepl*
 .rebel_readline*
+.cpcache/
+.lsp/.cache/

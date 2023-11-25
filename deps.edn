@@ -1,0 +1,15 @@
+{:paths
+ ["src" "resources"]
+
+ :deps
+ {org.clojure/clojure            {:mvn/version "1.12.0-alpha5"}
+  org.clojure/core.match         {:mvn/version "1.0.1"}
+  ;; TODO: Replace with jsonista
+  org.clojure/data.json          {:mvn/version "2.4.0"}
+  org.clojure/math.combinatorics {:mvn/version "0.2.0"}
+  org.clj-commons/digest         {:mvn/version "1.4.100"}
+  instaparse/instaparse          {:mvn/version "1.4.12"}}
+
+ :aliases
+ {:run-solution
+  {:exec-fn advent.runner/run-solution!}}}
