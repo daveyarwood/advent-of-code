@@ -1,6 +1,6 @@
 (ns advent.2015.12.01.puzzle-1
   (:require [clojure.java.io :as    io]
-            [advent.util.io  :refer (char-seq)]))
+            [advent.io       :refer [char-seq]]))
 
 (defn follow-instruction
   [floor instruction]
@@ -17,4 +17,3 @@
   []
   (with-open [rdr (io/reader (io/resource "2015-12-01-01-input"))]
     (-> rdr char-seq follow-instructions prn)))
-

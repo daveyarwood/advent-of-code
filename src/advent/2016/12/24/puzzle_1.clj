@@ -1,6 +1,6 @@
 (ns advent.2016.12.24.puzzle-1
-  (:require [advent.util.grid :as grid]
-            [clojure.java.io  :as io]))
+  (:require [advent.grid     :as grid]
+            [clojure.java.io :as io]))
 
 (comment
   "I got stuck on this one too. To be honest, all these path-finding problems

@@ -1,4 +1,4 @@
-(ns advent.util.math
+(ns advent.math
   (:require [clojure.math.combinatorics :as combo]))
 
 (defn divisible-by?

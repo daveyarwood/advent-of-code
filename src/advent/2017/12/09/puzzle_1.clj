@@ -1,5 +1,5 @@
 (ns advent.2017.12.09.puzzle-1
-  (:require [advent.util.io  :as util]
+  (:require [advent.io       :refer [char-seq]]
             [clojure.java.io :as io]))
 
 ;; I get a StackOverflowError if I don't fully realize the sequence as I'm going
@@ -97,4 +97,4 @@
 (defn -main
   []
   (with-open [rdr (io/reader (io/resource "2017-12-09-01-input"))]
-    (->> rdr util/char-seq tokenize total-group-score prn)))
+    (->> rdr char-seq tokenize total-group-score prn)))

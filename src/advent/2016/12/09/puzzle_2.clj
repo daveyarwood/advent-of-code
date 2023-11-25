@@ -1,7 +1,6 @@
 (ns advent.2016.12.09.puzzle-2
-  (:require [advent.2016.12.09.puzzle-1 :as    p1]
-            [advent.util.io             :refer (char-seq)]
-            [clojure.java.io            :as    io]))
+  (:require [advent.io       :refer [char-seq]]
+            [clojure.java.io :as    io]))
 
 (defn decompressed-length
   "using the algorithm explained here:

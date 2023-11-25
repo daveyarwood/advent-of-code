@@ -1,6 +1,6 @@
 (ns advent.2015.12.01.puzzle-2
   (:require [advent.2015.12.01.puzzle-1 :as    p1]
-            [advent.util.io             :refer (char-seq)]
+            [advent.io                  :refer [char-seq]]
             [clojure.java.io            :as    io]))
 
 (defn first-basement-position
@@ -8,7 +8,7 @@
   (->> instructions
        (reductions p1/follow-instruction 0)
        (map vector (drop 1 (range)))
-       (drop-while (fn [[position floor]] (not (neg? floor))))
+       (drop-while (fn [[_position floor]] (not (neg? floor))))
        first
        first))
 

@@ -1,4 +1,4 @@
-(ns advent.util.codec)
+(ns advent.codec)
 
 ;; source: https://stackoverflow.com/a/10087740/2338327
 (defn utf8->hex

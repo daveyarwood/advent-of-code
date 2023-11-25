@@ -1,4 +1,4 @@
-(ns advent.util.grid
+(ns advent.grid
   (:require [clojure.set :as set]))
 
 (defn- neighbors*
@@ -57,4 +57,3 @@
   [[a b] [c d]]
   (+ (Math/abs (- c a))
      (Math/abs (- d b))))
-

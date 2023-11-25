@@ -1,5 +1,5 @@
 (ns advent.2015.12.20.puzzle-1
-  (:require [advent.util.math :as math]))
+  (:require [advent.math :as math]))
 
 (defn presents-for-house
   [n]

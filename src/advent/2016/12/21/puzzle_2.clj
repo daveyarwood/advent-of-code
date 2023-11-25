@@ -1,6 +1,6 @@
 (ns advent.2016.12.21.puzzle-2
-  (:require [advent.util.seq            :as    seq]
-            [advent.2016.12.21.puzzle-1 :as    p1]
+  (:require [advent.2016.12.21.puzzle-1 :as    p1]
+            [advent.seq                 :as    seq]
             [clojure.core.match         :refer [match]]
             [clojure.java.io            :as    io]
             [clojure.string             :as    str]))

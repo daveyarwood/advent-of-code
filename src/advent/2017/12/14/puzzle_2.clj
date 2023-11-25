@@ -1,6 +1,6 @@
 (ns advent.2017.12.14.puzzle-2
   (:require [advent.2017.12.14.puzzle-1 :as p1]
-            [advent.util.grid           :as grid]
+            [advent.grid                :as grid]
             [clojure.string             :as str]))
 
 (comment

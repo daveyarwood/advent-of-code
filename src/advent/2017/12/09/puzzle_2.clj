@@ -1,6 +1,6 @@
 (ns advent.2017.12.09.puzzle-2
   (:require [advent.2017.12.09.puzzle-1 :as p1]
-            [advent.util.io             :as util]
+            [advent.io                  :as util]
             [clojure.java.io            :as io]))
 
 (defn count-garbage-chars

@@ -1,7 +1,7 @@
 (ns advent.2015.12.03.puzzle-2
   (:require [clojure.java.io            :as    io]
             [advent.2015.12.03.puzzle-1 :as    p1]
-            [advent.util.io             :refer (char-seq)]))
+            [advent.io                  :refer [char-seq]]))
 
 (defn -main
   []
@@ -14,4 +14,3 @@
            (apply merge-with +)
            count
            prn))))
-

@@ -1,4 +1,4 @@
-(ns advent.util.seq)
+(ns advent.seq)
 
 (defn rotate
   [amount coll]

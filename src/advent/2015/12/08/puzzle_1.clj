@@ -1,7 +1,7 @@
 (ns advent.2015.12.08.puzzle-1
-  (:require [advent.util.codec :refer (hex->utf8)]
-            [clojure.string    :as    str]
-            [clojure.java.io   :as    io]))
+  (:require [advent.codec    :refer [hex->utf8]]
+            [clojure.string  :as    str]
+            [clojure.java.io :as    io]))
 
 (defn count-extra-chars
   [s]
@@ -20,4 +20,3 @@
   []
   (with-open [rdr (io/reader (io/resource "2015-12-08-01-input"))]
     (->> rdr line-seq (map count-extra-chars) (reduce +) prn)))
-

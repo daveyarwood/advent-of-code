@@ -1,5 +1,5 @@
 (ns advent.2017.12.03.puzzle-1
-  (:require [advent.util.grid :as grid]))
+  (:require [advent.grid :as grid]))
 
 (comment
   "This naïve solution works for small inputs, but takes impossibly long for the
