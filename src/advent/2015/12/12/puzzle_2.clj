@@ -1,6 +1,6 @@
 (ns advent.2015.12.12.puzzle-2
-  (:require [clojure.data.json :as json]
-            [clojure.java.io   :as io]))
+  (:require [jsonista.core   :as json]
+            [clojure.java.io :as io]))
 
 (defprotocol INumericValueV2
   (numeric-value-v2 [this]))
@@ -16,7 +16,7 @@
       (->> this vals (map numeric-value-v2) (reduce +))))
 
   String
-  (numeric-value-v2 [this] 0)
+  (numeric-value-v2 [_] 0)
 
   Number
   (numeric-value-v2 [this] this))
@@ -24,4 +24,4 @@
 (defn -main
   []
   (with-open [rdr (io/reader (io/resource "2015-12-12-01-input.json"))]
-    (->> rdr json/read numeric-value-v2 prn)))
+    (->> rdr json/read-value numeric-value-v2 prn)))
