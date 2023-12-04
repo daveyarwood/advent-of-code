@@ -1,5 +1,40 @@
 (ns advent.grid
-  (:require [clojure.set :as set]))
+  (:require [clojure.set    :as set]
+            [clojure.string :as str]))
+
+(defn str->grid
+  "Given a multiline string like \"abc\\ndef\\nghi\", returns a vector o(f
+   vectors of characters like [[\\a \\b \\c] [\\d \\e \\f] [\\g \\h \\i]])"
+  [string]
+  (->> string
+       str/split-lines
+       (mapv vec)))
+
+(defn value-at-coords
+  [grid [x y]]
+  (get-in grid [y x]))
+
+(comment
+  ;;=> [[\a \b \c]
+  ;;    [\d \e \f]
+  ;;    [\g \h \i]]
+  (str->grid "abc\ndef\nghi")
+
+  ;;=> \f
+  (value-at-coords
+    (str->grid "abc\ndef\nghi")
+    [2 1]))
+
+(defn neighbor-coords-without-diagonal
+  [[x y]]
+  [[(inc x) y] [(dec x) y]
+   [x (inc y)] [x (dec y)]])
+
+(defn neighbor-coords-with-diagonal
+  [[x y]]
+  [[(dec x) (inc y)] [x (inc y)] [(inc x) (inc y)]
+   [(dec x) y]                   [(inc x) y]
+   [(dec x) (dec y)] [x (dec y)] [(inc x) (dec y)]])
 
 (defn- neighbors*
   [neighbors-fn]
@@ -12,15 +47,27 @@
                             (not (wall-pred value))))))))))
 
 (def neighbors-without-diagonal
-  (neighbors* (fn [[x y]]
-                [[(inc x) y] [(dec x) y]
-                 [x (inc y)] [x (dec y)]])))
+  (neighbors* neighbor-coords-without-diagonal))
 
 (def neighbors-with-diagonal
-  (neighbors* (fn [[x y]]
-                [[(dec x) (inc y)] [x (inc y)] [(inc x) (inc y)]
-                 [(dec x) y]                   [(inc x) y]
-                 [(dec x) (dec y)] [x (dec y)] [(inc x) (dec y)]])))
+  (neighbors* neighbor-coords-with-diagonal))
+
+(defn- neighbors*-v2
+  [neighbors-fn]
+  (fn [coord grid & [wall-pred]]
+    (let [wall-pred (or wall-pred (constantly false))]
+      (->> (neighbors-fn coord)
+           (filter (fn [neighbor-coord]
+                     (let [value (or (value-at-coords grid neighbor-coord)
+                                     ::off-grid)]
+                       (and (not= ::off-grid value)
+                            (not (wall-pred value))))))))))
+
+(def neighbors-without-diagonal-v2
+  (neighbors*-v2 neighbor-coords-without-diagonal))
+
+(def neighbors-with-diagonal-v2
+  (neighbors*-v2 neighbor-coords-with-diagonal))
 
 (defn- coord?
   [x]
